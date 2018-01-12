@@ -1,0 +1,89 @@
+#include "/home/suki/.config/colors/xdefault"
+urxvt.scrollBar: false
+!urxvt.font: xft:xos4 Terminus:style=Regular:size=8
+!urxvt.boldFont: xft:xos4 Terminus:style=Regular:size=8
+
+!urxvt.font: xft:UW ttyp0:size=10
+!urxvt.boldFont: xft:UW ttyp0:size=10
+!urxvt.font: -*-terminus-medium-r-normal-*-12-*-*-*-c-*-iso10646-1
+!urxvt.BoldFont: -*-terminus-medium-r-normal-*-12-*-*-*-c-*-iso10646-1
+!urxvt.font: -unscii-unscii-medium-r-normal-full-16-160-75-75-c-80-iso10646-1
+!urxvt.font: xft:Unscii Unscii:pixelsize=10:antialias=false:Regular
+!urxvt.boldFont: xft:Unscii Unscii:pixelsize=10:antialias=false:Regular
+urxvt.font: unscii
+urxvt.boldFont: unscii
+!urxvt.font: xft:Gohu GohuFont:size=11:antialias=false:Regular
+!urxvt.boldFont: xft:Gohu GohuFont:size=11:antialias=false:Regular 
+!urxvt.font: -gohu-gohufont-normal-r-normal--14-100-100-100-c-80-iso10646-1 
+!urxvt.BoldFont: -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
+!urxvt.ItalicFont: -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
+!urxvt.BoldItalicFont: -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
+!urxvt.font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO10646-1
+!urxvt.boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO10646-1
+
+!Rxvt*font: -gohu-gohufont-normal-r-normal--14-100-100-100-c-80-iso10646-1
+
+! Buffer save file
+urxvt.print-pipe: cat > $HOME/tmp/$(echo urxvt.dump.$(date +'%s'))
+
+! Buffer history size
+urxvt.saveLines: 9999
+
+! Make links clickable from urxvt
+urxvt.perl-ext-common: default,matcher,selection-to-clipboard
+urxvt.url-launcher: /usr/bin/chromium
+urxvt.matcher.button: 1
+urxvt.colorUL: grn
+
+urxvt.internalBorder: 15
+
+*.foreground: fg
+*.background: bg
+*.cursorColor: grn
+
+! black
+*.color0:	blk
+*.color8:	bblk
+
+! red
+*.color1:	red
+*.color9:	bred
+
+! green
+*.color2:	grn
+*.color10:	bgrn
+
+! yellow
+*.color3:	ylw
+*.color11:	bylw
+
+! blue
+*.color4:	blu
+*.color12:	bblu
+
+! magenta
+*.color5:	mag
+*.color13:	bmag
+
+! cyan
+*.color6:	cyn
+*.color14:	bcyn
+
+!white
+*.color7:	wht
+*.color15:	bwht
+
+!rofi config
+!rofi.font: artwiz lemon 8
+rofi.font: Unscii Unscii 11
+rofi.padding: 15
+rofi.width: 20
+rofi.disable-history: true
+rofi.hide-scrollbar: true
+rofi.columns: 1
+rofi.lines: 5
+rofi.bw: 4
+rofi.separator-style: solid
+rofi.color-window: bg, grn, grn
+
+rofi.color-normal:	bg, fg, bg, bg, grn
