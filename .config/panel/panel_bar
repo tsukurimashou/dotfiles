@@ -1,0 +1,164 @@
+#! /bin/sh
+#
+# Example panel for lemonbar
+
+. ./panel_colors
+
+num_mon=$(bspc query -M | wc -l)
+
+# Separator
+s="%{F$bblk}%{B$COLOR_BG}::%{B-}%{F-}"
+
+while read -r line ; do
+    case $line in
+        B*)
+            # battery
+            b="%{F$grn}%{B$COLOR_BG} ${line#?} %{B-}%{F-}"
+            ;;
+        C*)
+            # clock
+            c="%{F$wht}%{B$COLOR_BG} ${line#?} %{B-}%{F-}"
+            ;;
+        D*)
+            # desktop
+            d="%{F$wht}%{B$COLOR_BG} ${line#?} %{B-}%{F-}"
+            ;;
+        X*)
+            # wifi
+            wf="%{F$ylw}%{B$COLOR_BG} ${line#?} %{B-}%{F-}"
+            ;;
+        V*)
+            # VPN
+            v="%{F$blu}%{B$COLOR_BG} ${line#?} %{B-}%{F-}"
+            ;;
+        Z*)
+            # volume
+            vo="%{F$mag}%{B$COLOR_BG} ${line#?} %{B-}%{F-}"
+            ;;
+        M*)
+            # mail
+            m="%{F$ylw}%{B$COLOR_BG} ${line#?} %{B-}%{F-}"
+            ;;
+        #T*)
+        #    # window title
+        #    t="%{F$red}%{B$COLOR_BG} ${line#?} %{B-}%{F-}"
+        #    ;;
+        Y*)
+            # weather
+            test=""
+            IFS=':'
+            set -- ${line#?}
+            while [ $# -gt 0 ] ; do
+                case $1 in
+                  MIN*)
+                    txt=$(cut -d "-" -f 2 <<< "$1")
+                    test="${test}min%{F$blu}%{B$COLOR_BG} ${txt}°C %{B-}%{F-}"
+                  ;;
+                  MAX*)
+                    txt=$(cut -d "-" -f 2 <<< "$1")
+                    test="${test}max%{F$red}%{B$COLOR_BG} ${txt}°C %{B-}%{F-}"
+                  ;;
+                  AVG*)
+                    txt=$(cut -d "-" -f 2 <<< "$1")
+                    test="${test}avg%{F$grn}%{B$COLOR_BG} ${txt}°C %{B-}%{F-}"
+                  ;;
+                  TXT*)
+                    txt=$(cut -d "-" -f 2 <<< "$1")
+                    test="${test}$s ${txt}"
+                  ;; 
+                esac
+                shift
+            done
+            ;;
+        W*)
+            # bspwm's state
+            wm=""
+            SO=""
+            EO=""
+            IFS=':'
+            set -- ${line#?}
+            while [ $# -gt 0 ] ; do
+                item=$1
+                name=${item#?}
+                case $item in
+                    [mM]*)
+                        [ $num_mon -lt 2 ] && shift && continue
+                        case $item in
+                            m*)
+                                # monitor
+                                FG=$COLOR_MONITOR_FG
+                                BG=$COLOR_MONITOR_BG
+                                SO=""
+                                EO=""
+                                ;;
+                            M*)
+                                # focused monitor
+                                FG=$COLOR_FOCUSED_MONITOR_FG
+                                BG=$COLOR_FOCUSED_MONITOR_BG
+                                SO="+o"
+                                EO="-o"
+                                ;;
+                        esac
+                        #wm="${wm}%{F${FG}}%{B${BG}}%{A:bspc monitor -f ${name}:} ${name} %{A}%{B-}%{F-}"
+                        ;;
+                    [fFoOuU]*)
+                        case $item in
+                            f*)
+                                # free desktop
+                                FG=$COLOR_FREE_FG
+                                BG=$COLOR_FREE_BG
+                                SO=""
+                                EO=""
+                                ;;
+                            F*)
+                                # focused free desktop
+                                FG=$COLOR_FOCUSED_FREE_FG
+                                BG=$COLOR_FOCUSED_FREE_BG
+                                SO="+o"
+                                EO="-o"
+                                wm=" ${name} "
+                                ;;
+                            o*)
+                                # occupied desktop
+                                FG=$COLOR_OCCUPIED_FG
+                                BG=$COLOR_OCCUPIED_BG
+                                SO=""
+                                EO=""
+                                ;;
+                            O*)
+                                # focused occupied desktop
+                                FG=$COLOR_FOCUSED_OCCUPIED_FG
+                                BG=$COLOR_FOCUSED_OCCUPIED_BG
+                                SO="+o"
+                                EO="-o"
+                                wm=" ${name} "
+                                ;;
+                            u*)
+                                # urgent desktop
+                                FG=$COLOR_URGENT_FG
+                                BG=$COLOR_URGENT_BG
+                                SO=""
+                                EO=""
+                                ;;
+                            U*)
+                                # focused urgent desktop
+                                FG=$COLOR_FOCUSED_URGENT_FG
+                                BG=$COLOR_FOCUSED_URGENT_BG
+                                SO="+o"
+                                EO="-o"
+                                wm=" ${name} "
+                                ;;
+                        esac
+                        #wm="${wm}%{U${FG}}%{${SO}}%{F${FG}}%{B${BG}}%{A:bspc desktop -f ${name}:} ${name} %{A}%{B-}%{F-}%{${EO}}%{U-}"
+                        ;;
+                    [LTG]*)
+                        # layout, state and flags
+                        #wm="${wm}%{F$COLOR_STATE_FG}%{B$COLOR_STATE_BG} ${name} %{B-}%{F-}"
+                        ;;
+                esac
+                shift
+            done
+            ;;
+    esac
+    printf "%s\n" "%{l} ${test} %{c}${s}${wm}${s}%{r}${v}${s}${wf}${s}${vo}${s}${b}${s}${c}"
+done

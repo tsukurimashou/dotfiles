@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+
+Battery() {
+	BATPERC=$(acpi --battery | cut -d, -f2 | cut -d% -f1 | cut -d" " -f2)
+	if [ "$BATPERC" -ge 75 ]; then
+		BATP="[====]";
+	elif [ "$BATPERC" -ge 50 ]; then
+		BATP="[=== ]";
+	elif [ "$BATPERC" -ge 25 ]; then
+		BATP="[==  ]";
+	else
+		BATP="[=   ]";
+	fi
+
+	BATSTATUS=$(acpi --battery | cut -d, -f1 | cut -d: -f2 | cut -d" " -f2)
+
+	if [ "$BATSTATUS" == "Full" ]; then
+		BATS="==";
+	elif [ "$BATSTATUS" == "Discharging" ]; then
+		BATS="--";
+	elif [ "$BATSTATUS" == "Unknown" ]; then
+		BATS="~~";
+	elif [ "$BATSTATUS" == "Charging" ]; then
+		BATS="++";
+	else
+		BATS="??";
+	fi
+	echo "$BATS$BATP"
+}
+
+while true; do
+	echo "B$(Battery)"
+	sleep 1;
+done
