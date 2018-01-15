@@ -51,19 +51,19 @@ while read -r line ; do
             while [ $# -gt 0 ] ; do
                 case $1 in
                   MIN*)
-                    txt=$(cut -d "-" -f 2 <<< "$1")
+                    txt=$(cut -d "#" -f 2 <<< "$1")
                     test="${test}min%{F$blu}%{B$COLOR_BG} ${txt}°C %{B-}%{F-}"
                   ;;
                   MAX*)
-                    txt=$(cut -d "-" -f 2 <<< "$1")
+                    txt=$(cut -d "#" -f 2 <<< "$1")
                     test="${test}max%{F$red}%{B$COLOR_BG} ${txt}°C %{B-}%{F-}"
                   ;;
                   AVG*)
-                    txt=$(cut -d "-" -f 2 <<< "$1")
+                    txt=$(cut -d "#" -f 2 <<< "$1")
                     test="${test}avg%{F$grn}%{B$COLOR_BG} ${txt}°C %{B-}%{F-}"
                   ;;
                   TXT*)
-                    txt=$(cut -d "-" -f 2 <<< "$1")
+                    txt=$(cut -d "#" -f 2 <<< "$1")
                     test="${test}$s ${txt}"
                   ;; 
                 esac
