@@ -1,27 +1,13 @@
 #include "/home/suki/.config/colors/xdefault"
 urxvt.scrollBar: false
-!urxvt.font: xft:xos4 Terminus:style=Regular:size=8
-!urxvt.boldFont: xft:xos4 Terminus:style=Regular:size=8
-
-!urxvt.font: xft:UW ttyp0:size=10
-!urxvt.boldFont: xft:UW ttyp0:size=10
-!urxvt.font: -*-terminus-medium-r-normal-*-12-*-*-*-c-*-iso10646-1
-!urxvt.BoldFont: -*-terminus-medium-r-normal-*-12-*-*-*-c-*-iso10646-1
-!urxvt.font: -unscii-unscii-medium-r-normal-full-16-160-75-75-c-80-iso10646-1
-!urxvt.font: xft:Unscii Unscii:pixelsize=10:antialias=false:Regular
-!urxvt.boldFont: xft:Unscii Unscii:pixelsize=10:antialias=false:Regular
+! add issues with bold and Unscii, tried to declare bold the same way as normal font but didn't fix it
+! only fix that worked was:
+! add this line
+! unscii "-unscii-unscii-medium-r-normal-full-16-160-75-75-c-80-iso10646-1"
+! to the file
+! /usr/share/fonts/misc/fonts.alias
 urxvt.font: unscii
 urxvt.boldFont: unscii
-!urxvt.font: xft:Gohu GohuFont:size=11:antialias=false:Regular
-!urxvt.boldFont: xft:Gohu GohuFont:size=11:antialias=false:Regular 
-!urxvt.font: -gohu-gohufont-normal-r-normal--14-100-100-100-c-80-iso10646-1 
-!urxvt.BoldFont: -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
-!urxvt.ItalicFont: -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
-!urxvt.BoldItalicFont: -gohu-gohufont-medium-r-normal--14-100-100-100-c-80-iso10646-1
-!urxvt.font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO10646-1
-!urxvt.boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO10646-1
-
-!Rxvt*font: -gohu-gohufont-normal-r-normal--14-100-100-100-c-80-iso10646-1
 
 ! Buffer save file
 urxvt.print-pipe: cat > $HOME/tmp/$(echo urxvt.dump.$(date +'%s'))
