@@ -1,6 +1,6 @@
 #include "/home/suki/.config/colors/xdefault"
 urxvt.scrollBar: false
-! add issues with bold and Unscii, tried to declare bold the same way as normal font but didn't fix it
+! add issues with bold and Unscii, tried to declare bold the same way as normal font but didnt fix it
 ! only fix that worked was:
 ! add this line
 ! unscii "-unscii-unscii-medium-r-normal-full-16-160-75-75-c-80-iso10646-1"
