@@ -15,6 +15,7 @@ compton --config $HOME/.config/compton/compton &
 /usr/bin/pulseaudio --daemonize=no
 # startpage
 cd $HOME/startpage && python -m http.server 8080 &
+cd $HOME/.config/colors && ./convert.sh default > xdefault
 cd $HOME
 # notifications
 dunst &

@@ -43,7 +43,7 @@ export EDITOR=vim
 #else
 #  export PROMPT_COMMAND='printf "\033Ptmux;\033\033]12;%s\007\033\\" $red && echo -en "\033]0;$PWD\007"'
 #fi
-export PROMPT_COMMAND='printf "\033]12;%s\007" $grn && echo -en "\033]0;$PWD\007"'
+#export PROMPT_COMMAND='printf "\033]12;%s\007" $grn && echo -en "\033]0;$PWD\007"'
 
 source $HOME/.config/colors/default
 source $HOME/.profile
@@ -52,5 +52,4 @@ alias sudo='sudo '
 alias uniqa_vpn='openvpn --config ~/.vpn/uniqa/gateway-udp-1194.ovpn'
 alias sf_vpn='openconnect --juniper --user lrazbinski https://portal.secondfloor.nl/dana-na/auth/url_4/welcome.cgi'
 
-cd $HOME/.config/colors && ./convert.sh default > xdefault
 cd $HOME
