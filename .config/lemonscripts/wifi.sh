@@ -1,12 +1,11 @@
 #!/usr/bin/bash
 
 Wifi() {
-    INTERFACE=$(cat /proc/net/wireless | perl -ne '/(\w+):/ && print $1')
-    STATUS=$(wpa_cli -i $INTERFACE status | grep -w 'wpa_state' | cut -d '=' -f 2)
+    STATUS=$(wpa_cli -i $WIFI_INTERFACE status | grep -w 'wpa_state' | cut -d '=' -f 2)
 
     if [ "$STATUS" = "COMPLETED" ]; then
         SIGNAL=$(awk 'NR==3 {print $3}''' /proc/net/wireless | sed 's/.$//')
-        NAME=$(wpa_cli -i $INTERFACE status | grep -w 'ssid' | cut -d '=' -f 2)
+        NAME=$(wpa_cli -i $WIFI_INTERFACE status | grep -w 'ssid' | cut -d '=' -f 2)
 	    if [ "$SIGNAL" -ge 60 ]; then
             ICON="";
         elif [ "$SIGNAL" -ge 30 ]; then

@@ -24,6 +24,8 @@ hsetroot -solid "#262a3b" &
 # default cursor
 xsetroot -cursor_name left_ptr &
 # allows to notify automatically when wifi drops / reconnects
-wpa_cli -i wlp4s0 -a $HOME/bin/wifi_notify.sh &
+WIFI_INTERFACE=$(cat /proc/net/wireless | perl -ne '/(\w+):/ && print $1')
+export WIFI_INTERFACE
+wpa_cli -i $WIFI_INTERFACE -a $HOME/bin/wifi_notify.sh &
 # wm
 exec bspwm
