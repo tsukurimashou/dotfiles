@@ -27,7 +27,7 @@ Battery() {
         else
 		    BATICON="?";
 	    fi
-	    if ["$BATCOUNT" -eq "1" ]; then
+	    if [ "$BATCOUNT" -eq "1" ]; then
         OUTPUT="BAT $BATPERC% ";
       else
         OUTPUT+="BAT$i $BATPERC% ";
